@@ -362,6 +362,7 @@ plt.title('writing score parent_lv_edu description')
 plt.xlabel('writing score parent_lv_edu group')
 plt.ylabel('Number of Student')
 plt.legend()
+plt.tight_layout()
 
 
 #######################################################################################
@@ -426,19 +427,20 @@ plt.title('writing score lunch  description')
 plt.xlabel('writing score lunch  group')
 plt.ylabel('Number of Student')
 plt.legend()
+plt.tight_layout()
 
 
 #######################################################################################
 
 
 plotpie =plt.figure("Math, Reading, Writing and Total evaluation")
+chartLabels = ['Passed', 'Failed']
 
 #Draw pie chart for Math
 
 passMathCount = data['Math tier'][data['Math tier'] == 'pass'].count()
 failedMathCount = data['Math tier'][data['Math tier'] == 'fail'].count()
 chartContent = [passMathCount, failedMathCount]
-chartLabels = ['Passed', 'Failed']
 plt.subplot(2, 2, 1) #Figure will have 2 rows and 2 column, this plot is at position 1
 plt.pie(chartContent, labels=chartLabels, startangle=90, autopct='%1.1f%%')
 plt.legend()
@@ -449,7 +451,6 @@ plt.title("Students Math Result")
 passReadCount = data['Reading tier'][data['Reading tier'] == 'pass'].count()
 failedReadCount = data['Reading tier'][data['Reading tier'] == 'fail'].count()
 chartContent = [passReadCount, failedReadCount]
-chartLabels = ['Passed', 'Failed']
 plt.subplot(2, 2, 2) #Figure will have 2 rows and 2 column, this plot is at position 2
 plt.pie(chartContent, labels=chartLabels, startangle=90, autopct='%1.1f%%')
 plt.legend()
@@ -460,7 +461,6 @@ plt.title("Students Reading Result")
 passWriteCount = data['Writing tier'][data['Writing tier'] == 'pass'].count()
 failedWriteCount = data['Writing tier'][data['Writing tier'] == 'fail'].count()
 chartContent = [passWriteCount, failedWriteCount]
-chartLabels = ['Passed', 'Failed']
 plt.subplot(2, 2, 3) #Figure will have 2 rows and 2 column, this plot is at position 3
 plt.pie(chartContent, labels=chartLabels, startangle=90, autopct='%1.1f%%')
 plt.legend()
@@ -471,12 +471,12 @@ plt.title("Students Writing Result")
 PassedCount = data['Total tier'][data['Total tier'] == 'pass'].count()
 FailedCount = data['Total tier'][data['Total tier'] == 'fail'].count()
 chartContent = [PassedCount, FailedCount]
-chartLabels = ['Passed', 'Failed']
 plt.subplot(2, 2, 4) #Figure will have 2 rows and 2 column, this plot is at position 4
 plt.pie(chartContent, labels=chartLabels, startangle=90, autopct='%1.1f%%')
 plt.legend()
 plt.title("Students Overall Result")
 plt.suptitle("STUDENTS EXAM PERFORMANCE")
+#plt.tight_layout()
 
 #######################################################################################
 
@@ -540,6 +540,7 @@ plt.title('writing score lunch description')
 plt.xlabel('writing score lunch group')
 plt.ylabel('Number of Student')
 plt.legend()
+#plt.tight_layout()
 
 
 #######################################################################################
@@ -604,54 +605,8 @@ plt.title('writing score test preparation description')
 plt.xlabel('writing score test preparation group')
 plt.ylabel('Number of Student')
 plt.legend()
+plt.tight_layout()
 
-#######################################################################################
-plotpie =plt.figure("Math, Reading, Writing and Total evaluation")
-
-#Draw pie chart for Math
-
-passMathCount = data['Math tier'][data['Math tier'] == 'pass'].count()
-failedMathCount = data['Math tier'][data['Math tier'] == 'fail'].count()
-chartContent = [passMathCount, failedMathCount]
-chartLabels = ['Passed', 'Failed']
-plt.subplot(2, 2, 1) #Figure will have 2 rows and 2 column, this plot is at position 1
-plt.pie(chartContent, labels=chartLabels, startangle=90, autopct='%1.1f%%')
-plt.legend()
-plt.title("Students Math Result")
-
-#Draw pie chart for Reading
-
-passReadCount = data['Reading tier'][data['Reading tier'] == 'pass'].count()
-failedReadCount = data['Reading tier'][data['Reading tier'] == 'fail'].count()
-chartContent = [passReadCount, failedReadCount]
-chartLabels = ['Passed', 'Failed']
-plt.subplot(2, 2, 2) #Figure will have 2 rows and 2 column, this plot is at position 2
-plt.pie(chartContent, labels=chartLabels, startangle=90, autopct='%1.1f%%')
-plt.legend()
-plt.title("Students Reading Result")
-
-#Draw pie chart for Writing
-
-passWriteCount = data['Writing tier'][data['Writing tier'] == 'pass'].count()
-failedWriteCount = data['Writing tier'][data['Writing tier'] == 'fail'].count()
-chartContent = [passWriteCount, failedWriteCount]
-chartLabels = ['Passed', 'Failed']
-plt.subplot(2, 2, 3) #Figure will have 2 rows and 2 column, this plot is at position 3
-plt.pie(chartContent, labels=chartLabels, startangle=90, autopct='%1.1f%%')
-plt.legend()
-plt.title("Students Writing Result")
-
-#Draw pie chart for Overall Result
-
-PassedCount = data['Total tier'][data['Total tier'] == 'pass'].count()
-FailedCount = data['Total tier'][data['Total tier'] == 'fail'].count()
-chartContent = [PassedCount, FailedCount]
-chartLabels = ['Passed', 'Failed']
-plt.subplot(2, 2, 4) #Figure will have 2 rows and 2 column, this plot is at position 4
-plt.pie(chartContent, labels=chartLabels, startangle=90, autopct='%1.1f%%')
-plt.legend()
-plt.title("Students Overall Result")
-plt.suptitle("STUDENTS EXAM PERFORMANCE")
 
 #######################################################################################
 #Math, Reading, Writing Tutorial time learn percentage
@@ -700,6 +655,7 @@ plt.bar(writingper,writingpernum)
 plt.title('writing tutorial study percentage')
 plt.xlabel('Percent')
 plt.ylabel('Number of Student')
+plt.tight_layout()
 
 #######################################################################################
 #Plot the guess point from min to max
@@ -762,5 +718,4 @@ plt.show()
 
 #######################################################################################
 #Time consuming- Might not be needed
-
 
