@@ -398,8 +398,8 @@ lunch_type = ["standard", "free/reduced"]
 
 math_by_lunch_average = [average(data["math score"][data["lunch"] == lunch_type[i]]) for i in range(2)]
 math_by_lunch_deviation = [deviation(data["math score"][data["lunch"] == lunch_type[i]]) for i in range(2)]
-math_by_lunch_max = [data["math score"][data["parental level of education"] == lunch_type[i]].max() for i in range(2)]
-math_by_lunch_min = [data["math score"][data["parental level of education"] == lunch_type[i]].min() for i in range(2)]
+math_by_lunch_max = [data["math score"][data["lunch"] == lunch_type[i]].max() for i in range(2)]
+math_by_lunch_min = [data["math score"][data["lunch"] == lunch_type[i]].min() for i in range(2)]
 plt.subplot(3, 1, 1)
 math_x_axis_lunch = np.arange(len(lunch_type))
 plt.bar(math_x_axis_lunch - 0.4, math_by_lunch_average, 0.2, label="Average")
@@ -416,9 +416,9 @@ plt.legend()
 
 reading_by_lunch_average = [average(data["reading score"][data["lunch"] == lunch_type[i]]) for i in range(2)]
 reading_by_lunch_deviation = [deviation(data["reading score"][data["lunch"] == lunch_type[i]]) for i in range(2)]
-reading_by_lunch_max = [data["reading score"][data["parental level of education"] == lunch_type[i]].max() for i in
+reading_by_lunch_max = [data["reading score"][data["lunch"] == lunch_type[i]].max() for i in
                         range(2)]
-reading_by_lunch_min = [data["reading score"][data["parental level of education"] == lunch_type[i]].min() for i in
+reading_by_lunch_min = [data["reading score"][data["lunch"] == lunch_type[i]].min() for i in
                         range(2)]
 plt.subplot(3, 1, 2)
 reading_x_axis_lunch = np.arange(len(lunch_type))
@@ -436,9 +436,9 @@ plt.legend()
 
 writing_by_lunch_average = [average(data["writing score"][data["lunch"] == lunch_type[i]]) for i in range(2)]
 writing_by_lunch_deviation = [deviation(data["writing score"][data["lunch"] == lunch_type[i]]) for i in range(2)]
-writing_by_lunch_max = [data["writing score"][data["parental level of education"] == lunch_type[i]].max() for i in
+writing_by_lunch_max = [data["writing score"][data["lunch"] == lunch_type[i]].max() for i in
                         range(2)]
-writing_by_lunch_min = [data["writing score"][data["parental level of education"] == lunch_type[i]].min() for i in
+writing_by_lunch_min = [data["writing score"][data["lunch"] == lunch_type[i]].min() for i in
                         range(2)]
 plt.subplot(3, 1, 3)
 writing_x_axis_lunch = np.arange(len(lunch_type))
