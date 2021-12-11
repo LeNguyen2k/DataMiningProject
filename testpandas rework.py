@@ -140,7 +140,7 @@ writing_guess_values_max = [data['writing score'] + 25,
                             data['writing score'] + 20, 100]
 data['writing_guess_min'] = np.select(writing_guess_conditions, writing_guess_values_min)
 data['writing_guess_max'] = np.select(writing_guess_conditions, writing_guess_values_max)
-data.to_csv('StudentResults_and_StudentResolves.csv')
+data.to_csv('StudentResultsAndResolves.csv')
 
 # Print all result on Python
 #######################################################################################
