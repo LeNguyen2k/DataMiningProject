@@ -65,21 +65,21 @@ conditions_math = [(data['math score'] < 50),
                    (data['math score'] >= 70),
                    (data['math score'] >= 50) & (data['math score'] < 70)]
 values_math = [100, 0, round(100 - (data['math score'] - 49) * (100 / 22))]
-data['Extra study math percentage'] = np.select(conditions_math, values_math)
+data['Extra math study time'] = np.select(conditions_math, values_math)
 
 # Probability that have to study in reading
 conditions_reading = [(data['reading score'] < 50),
                       (data['reading score'] >= 70),
                       (data['reading score'] >= 50) & (data['reading score'] < 70)]
 values_reading = [100, 0, round(100 - (data['reading score'] - 49) * 100 / 22)]
-data['Extra study reading percentage'] = np.select(conditions_reading, values_reading)
+data['Extra reading study time'] = np.select(conditions_reading, values_reading)
 
 # Probability that have to study in writing
 conditions_writing = [(data['writing score'] < 50),
                       (data['writing score'] >= 70),
                       (data['writing score'] >= 50) & (data['writing score'] < 70)]
 values_writing = [100, 0, round(100 - (data['writing score'] - 49) * 100 / 22)]
-data['Extra study writing percentage'] = np.select(conditions_writing, values_writing)
+data['Extra writing study time'] = np.select(conditions_writing, values_writing)
 
 # Guessing point from next exam with range from min to max base on present point
 
@@ -98,7 +98,7 @@ math_guess_values_min = [0,
                          ]
 math_guess_values_max = [data['math score'] + 25,
                          data['math score'] + 25,
-                         round(data['math score'] + 20 + 0.05 * data['Extra study math percentage']),
+                         round(data['math score'] + 20 + 0.05 * data['Extra math study time']),
                          data['math score'] + 20, 100]
 data['math_guess_min'] = np.select(math_guess_conditions, math_guess_values_min)
 data['math_guess_max'] = np.select(math_guess_conditions, math_guess_values_max)
@@ -117,7 +117,7 @@ reading_guess_values_min = [0,
                             ]
 reading_guess_values_max = [data['reading score'] + 25,
                             data['reading score'] + 25,
-                            round(data['reading score'] + 20 + 0.05 * data['Extra study reading percentage']),
+                            round(data['reading score'] + 20 + 0.05 * data['Extra reading study time']),
                             data['reading score'] + 20, 100]
 data['reading_guess_min'] = np.select(reading_guess_conditions, reading_guess_values_min)
 data['reading_guess_max'] = np.select(reading_guess_conditions, reading_guess_values_max)
@@ -136,7 +136,7 @@ writing_guess_values_min = [0,
                             ]
 writing_guess_values_max = [data['writing score'] + 25,
                             data['writing score'] + 25,
-                            round(data['writing score'] + 20 + 0.05 * data['Extra study writing percentage']),
+                            round(data['writing score'] + 20 + 0.05 * data['Extra writing study time']),
                             data['writing score'] + 20, 100]
 data['writing_guess_min'] = np.select(writing_guess_conditions, writing_guess_values_min)
 data['writing_guess_max'] = np.select(writing_guess_conditions, writing_guess_values_max)
@@ -651,10 +651,10 @@ plotbartutorial = plt.figure("Math, Reading, Writing Tutorial time learn percent
 
 mathper, readingper, writingper = [5] * 6, [5] * 6, [5] * 6
 for i in range(6):
-    mathper[i] = data["Extra study math percentage"][(data["Extra study math percentage"] > ((i - 1) * 25)) & (
-                data["Extra study math percentage"] <= (i * 25))].count()
+    mathper[i] = data["Extra math study time"][(data["Extra math study time"] > ((i - 1) * 25)) & (
+                data["Extra math study time"] <= (i * 25))].count()
     if i == 5:
-        mathper[i] = data["Extra study math percentage"][data["Extra study math percentage"] == 100].count()
+        mathper[i] = data["Extra math study time"][data["Extra math study time"] == 100].count()
 mathpernum = [mathper[i] for i in range(6)]
 mathper = ["0%", "0-25%", "25-50%", "50-75%", "75-100%", "100%"]
 plt.subplot(3, 1, 1)
@@ -666,10 +666,10 @@ plt.ylabel('Number of Student')
 # Reading
 
 for i in range(6):
-    readingper[i] = data["Extra study reading percentage"][(data["Extra study reading percentage"] > ((i - 1) * 25)) & (
-                data["Extra study reading percentage"] <= (i * 25))].count()
+    readingper[i] = data["Extra reading study time"][(data["Extra reading study time"] > ((i - 1) * 25)) & (
+                data["Extra reading study time"] <= (i * 25))].count()
     if i == 5:
-        readingper[i] = data["Extra study reading percentage"][data["Extra study reading percentage"] == 100].count()
+        readingper[i] = data["Extra reading study time"][data["Extra reading study time"] == 100].count()
 readingpernum = [readingper[i] for i in range(6)]
 readingper = ["0%", "0-25%", "25-50%", "50-75%", "75-100%", "100%"]
 plt.subplot(3, 1, 2)
@@ -681,10 +681,10 @@ plt.ylabel('Number of Student')
 # writing
 
 for i in range(6):
-    writingper[i] = data["Extra study writing percentage"][(data["Extra study writing percentage"] > ((i - 1) * 25)) & (
-                data["Extra study writing percentage"] <= (i * 25))].count()
+    writingper[i] = data["Extra writing study time"][(data["Extra writing study time"] > ((i - 1) * 25)) & (
+                data["Extra writing study time"] <= (i * 25))].count()
     if i == 5:
-        writingper[i] = data["Extra study writing percentage"][data["Extra study writing percentage"] == 100].count()
+        writingper[i] = data["Extra writing study time"][data["Extra writing study time"] == 100].count()
 writingpernum = [writingper[i] for i in range(6)]
 writingper = ["0%", "0-25%", "25-50%", "50-75%", "75-100%", "100%"]
 plt.subplot(3, 1, 3)
