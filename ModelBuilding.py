@@ -186,7 +186,7 @@ def KNearestNeighbor(dataset):
     plt.ylabel('Accuracy')
     plt.show()
 
-def SVMachine(dataset):
+def NonLinearSVMachine(dataset):
     tempSet = pd.get_dummies(dataset, columns=["Total tier"], prefix=["TotalTier"], drop_first=True)
     trainSet, testSet = splitDataSet(tempSet)  
     print(trainSet)
@@ -216,7 +216,40 @@ def SVMachine(dataset):
     plt.ylabel('Accuracy')
     plt.show()
 
-def logisticRegression(dataset):
+def linearSVMachine(dataset):
+    tempSet = pd.get_dummies(dataset, columns=["Total tier"], prefix=["TotalTier"], drop_first=True)
+    trainSet, testSet = splitDataSet(tempSet)  
+    print(trainSet)
+
+    trainY = trainSet["Class"]
+    trainX = trainSet.drop(["Class"], axis=1)
+
+    testY = testSet["Class"]
+    testX = testSet.drop("Class", axis=1)
+
+    C = [0.01, 0.1, 0.2, 0.5, 0.8, 1, 5, 10, 20, 50]
+    SVMTrainAcc = []
+    SVMTestAcc = []
+
+    for param in C:
+        clf = SVC(C = param, kernel='linear')
+        clf.fit(trainX, trainY)
+        predTrainY = clf.predict(trainX)
+        predTestY = clf.predict(testX)
+        SVMTrainAcc.append(accuracy_score(trainY, predTrainY))
+        SVMTestAcc.append(accuracy_score(testY, predTestY))
+    
+    plt.plot(C, SVMTrainAcc, 'ro-', C, SVMTestAcc, 'bv--')
+    plt.legend(['Training Accuracy', 'Test Accuracy'])
+    plt.xlabel('C')
+    plt.xscale('log')
+    plt.ylabel('Accuracy')
+    plt.show()
+
+    print("Train Accuracy: ", SVMTrainAcc)
+    print("Test Accuracy: ", SVMTestAcc)
+
+def linearClassifier(dataset):
     tempSet = pd.get_dummies(dataset, columns=["Total tier"], prefix=["TotalTier"], drop_first=True)
     trainSet, testSet = splitDataSet(tempSet)  
     print(trainSet)
@@ -248,7 +281,7 @@ def logisticRegression(dataset):
         SVMTestAcc.append(accuracy_score(testY, predTestY))
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
-    fig.suptitle("Logistic Regression")
+    fig.suptitle("Linear Classifier")
     ax1.plot(C, LRtrainAcc, 'ro-', C, LRtestAcc, 'bv--')
     ax1.legend(['Training Accuracy', 'Test Accuracy'])
     ax1.set_xlabel('C')
@@ -344,6 +377,8 @@ print(newSet)
 
 # KNearestNeighbor(newSet)
 
-# SVMachine(newSet)
+# NonLinearSVMachine(newSet)
 
-logisticRegression(newSet)
+linearSVMachine(newSet)
+
+# linearClassifier(newSet)
